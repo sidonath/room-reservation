@@ -1,41 +1,13 @@
 require 'lotus/router'
 require 'lotus/controller'
 require 'lotus/view'
+require 'pathname'
 require_relative 'lotus'
 
-class HomeController
-  include Lotus::Controller
+ApplicationRoot = Pathname.new(__FILE__).dirname
+Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
 
-  action 'Index' do
-    expose :planet
-
-    def call(params)
-      @planet = 'World'
-    end
-  end
-end
-
-class ApplicationLayout
-  include Lotus::Layout
-end
-
-module Home
-  class Index
-    include Lotus::View
-
-    layout :application
-
-    def salutation
-      'Hello'
-    end
-
-    def greet
-      "#{ salutation }, #{ planet }!"
-    end
-  end
-end
-
-Lotus::View.root = __dir__ + '/templates'
+Lotus::View.root = ApplicationRoot.join('app/templates')
 Lotus::View.load!
 
 router = Lotus::Router.new do
