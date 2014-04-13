@@ -4,6 +4,9 @@ gem 'rake'
 gem 'lotus-router'
 gem 'lotus-controller'
 gem 'lotus-view'
+gem 'sequel'
+gem 'pg'
+gem 'dotenv'
 gem 'shotgun'
 
 group :test do

@@ -12,3 +12,10 @@ on @jodosha's [example](https://gist.github.com/jodosha/9830002).
 The application is a system for booking conference rooms in a coworing space.
 Users can pick a free slot to book a room, and an administrator can manage
 rooms and see reports on how much a team has used a room.
+
+# Setup
+
+1. Clone repo
+2. Run `bundle install`
+3. Migrate the database `sequel -m db/migrations \`dotenv 'echo $DATABASE_URL'\``
+4. Start the server with `rake server`

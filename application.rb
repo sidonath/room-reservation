@@ -2,10 +2,15 @@ require 'lotus/router'
 require 'lotus/controller'
 require 'lotus/view'
 require 'pathname'
+require 'dotenv'
+require 'sequel'
 require_relative 'lotus'
 
 ApplicationRoot = Pathname.new(__FILE__).dirname
 Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
+
+Dotenv.load
+DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
 
 Lotus::View.root = ApplicationRoot.join('app/templates')
 Lotus::View.load!
