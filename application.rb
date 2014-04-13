@@ -43,5 +43,7 @@ router = Lotus::Router.new do
 end
 
 Application = Rack::Builder.new do
+  use Rack::Static, :urls => ["/stylesheets"], :root => "public"
+
   run Lotus::Application.new(router)
 end.to_app
