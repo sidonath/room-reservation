@@ -8,6 +8,7 @@ gem 'sequel'
 gem 'pg'
 gem 'dotenv'
 gem 'shotgun'
+gem 'pry'
 
 group :test do
   gem 'rspec'
