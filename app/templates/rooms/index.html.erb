@@ -1,0 +1,14 @@
+<h2>Rooms</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <% rooms.each do |room| %>
+    <tr>
+      <td><%= room.name %></td>
+      <td><%= room.description %></td>
+    </tr>
+  <% end %>
+</table>

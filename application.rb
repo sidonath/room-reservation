@@ -6,17 +6,19 @@ require 'dotenv'
 require 'sequel'
 require_relative 'lotus'
 
-ApplicationRoot = Pathname.new(__FILE__).dirname
-Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
-
 Dotenv.load
 DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
+
+ApplicationRoot = Pathname.new(__FILE__).dirname
+Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
 
 Lotus::View.root = ApplicationRoot.join('app/templates')
 Lotus::View.load!
 
 router = Lotus::Router.new do
   get '/', to: 'home#index'
+
+  resources :rooms
 end
 
 Application = Rack::Builder.new do
