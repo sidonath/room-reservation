@@ -1,0 +1,19 @@
+<h2>New Room</h2>
+
+<form action="<%= Router.path(:rooms) %>" method="POST">
+  <div>
+    <label>Name:</label>
+    <input name="room[name]">
+  </div>
+  <div>
+    <label>Description:</label>
+    <textarea name="room[description]"></textarea>
+  </div>
+  <div>
+    <button type="submit">Create new room</button>
+  </div>
+</form>
+
+<p>
+  <a href="<%= Router.path(:rooms) %>">Cancel</a>
+</p>

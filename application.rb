@@ -17,7 +17,7 @@ Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
 Lotus::View.root = ApplicationRoot.join('app/templates')
 Lotus::View.load!
 
-router = Lotus::Router.new do
+Router = router = Lotus::Router.new do
   get '/', to: 'home#index'
 
   resources :rooms
