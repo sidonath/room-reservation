@@ -25,7 +25,7 @@ module Lotus
 
     def call(env)
       _call(env).tap do |response|
-        response[2] = Array(@renderer.render(response))
+        @renderer.render(response)
       end
     end
 
@@ -41,12 +41,13 @@ module Lotus
       if render?(response)
         action = response.pop
         view   = view_for(action)
-        view.render(action.to_rendering)
+        response[2] = Array(view.render(action.to_rendering))
       end
     end
 
     private
     def render?(response)
+      return false unless (200..299).include?(response.first)
       response.last.respond_to?(:to_rendering)
     end
 
