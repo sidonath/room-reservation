@@ -9,6 +9,8 @@ require_relative 'lotus'
 Dotenv.load
 DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
 
+Lotus::Controller.handle_exceptions = false
+
 ApplicationRoot = Pathname.new(__FILE__).dirname
 Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
 
