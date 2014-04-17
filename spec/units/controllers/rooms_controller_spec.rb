@@ -21,7 +21,11 @@ describe RoomsController::Index do
 end
 
 describe RoomsController::Create do
-  let(:room) { double(id: 1) }
+  let(:room) { Room.new }
+  let(:params) { { room: {
+      name: "foo",
+      description: "bar"
+    } } }
   let(:action) { described_class.new(repository: RoomRepositaryStub) }
 
   before do
@@ -30,21 +34,18 @@ describe RoomsController::Create do
   end
 
   it 'should pass the params when creating a room' do
-    params = { room: {
-      name: "foo",
-      description: "bar"
-    } }
     action.call(params)
-    expect(RoomRepositaryStub).to have_received(:new).with params[:room]
+    expect(room.name).to eq('foo')
+    expect(room.description).to eq('bar')
   end
 
   it 'should save the room' do
-    action.call({})
+    action.call(params)
     expect(room).to have_received(:save)
   end
 
   it 'should redirect to the rooms index' do
-    response = action.call({})
+    response = action.call(params)
     expect(response.fetch(0)).to eq(302)
     expect(response.fetch(1).fetch('Location')).to eq('/rooms')
   end

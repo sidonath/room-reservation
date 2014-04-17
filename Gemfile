@@ -9,6 +9,7 @@ gem 'pg'
 gem 'dotenv'
 gem 'shotgun'
 gem 'pry'
+gem 'reform'
 
 group :test do
   gem 'rspec'

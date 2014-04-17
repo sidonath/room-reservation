@@ -19,13 +19,21 @@ class RoomsController
   end
 
   action 'Create' do
-    def initialize(repository: Room)
+    def initialize(repository: Room, form_class: RoomForm)
       @repository = repository
+      @form_class = form_class
     end
 
     def call(params)
-      room = @repository.new(params[:room])
-      room.save
+      @room = @repository.new
+      @form = @form_class.new(@room)
+
+      unless @form.validate(params.fetch(:room).stringify_keys)
+        return redirect_to Router.path(:rooms, :new)
+      end
+
+      @form.save
+      @room.save
       return redirect_to Router.path(:rooms)
     end
   end

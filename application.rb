@@ -4,6 +4,7 @@ require 'lotus/view'
 require 'pathname'
 require 'dotenv'
 require 'sequel'
+require 'reform'
 require_relative 'lotus'
 
 Dotenv.load
