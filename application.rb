@@ -35,14 +35,12 @@ adapter = Lotus::Model::Adapters::SqlAdapter.new(mapper, ENV.fetch('DATABASE_URL
 
 RoomRepository.adapter = adapter
 
-Router = router = Lotus::Router.new do
-  get '/', to: 'home#index'
+Application = Lotus::Application.new
 
-  resources :rooms
-end
+require_relative 'config/routes'
 
-Application = Rack::Builder.new do
+Application.build_rack_app do
   use Rack::Static, :urls => ["/stylesheets"], :root => "public"
 
-  run Lotus::Application.new(router)
-end.to_app
+  run Application
+end

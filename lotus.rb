@@ -18,9 +18,18 @@ end
 
 module Lotus
   class Application
-    def initialize(router, renderer = RenderingPolicy.new)
-      @router   = router
+    attr_accessor :router
+
+    def initialize(renderer = RenderingPolicy.new)
       @renderer = renderer
+    end
+
+    def setup_router(&block)
+      @router = Lotus::Router.new(&block)
+    end
+
+    def build_rack_app(&block)
+      Rack::Builder.new(&block).to_app
     end
 
     def call(env)

@@ -1,6 +1,6 @@
 <h2>New Room</h2>
 
-<form action="<%= Router.path(:rooms) %>" method="POST">
+<form action="<%= router.path(:rooms) %>" method="POST">
   <div>
     <label>Name:</label>
     <input name="room[name]">
@@ -15,5 +15,5 @@
 </form>
 
 <p>
-  <a href="<%= Router.path(:rooms) %>">Cancel</a>
+  <a href="<%= router.path(:rooms) %>">Cancel</a>
 </p>
