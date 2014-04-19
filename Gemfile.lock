@@ -6,6 +6,21 @@ GIT
       lotus-utils (~> 0.1)
       rack (~> 1.5)
 
+GIT
+  remote: git://github.com/lotus/utils.git
+  revision: 37a010f2369b14555d3c0f78a26ee08a10c60a62
+  specs:
+    lotus-utils (0.1.1)
+
+GIT
+  remote: git://github.com/sidonath/model.git
+  revision: a7d64c1efd8605b88c7402dd2042de2c52db6dbf
+  branch: dont-insert-identity
+  specs:
+    lotus-model (0.1.0)
+      lotus-utils (~> 0.1, > 0.1.0)
+      sequel (~> 4.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,7 +51,6 @@ GEM
     lotus-router (0.1.0)
       http_router (~> 0)
       lotus-utils (~> 0)
-    lotus-utils (0.1.0)
     lotus-view (0.1.0)
       lotus-utils (~> 0.1)
       tilt (~> 2.0, >= 2.0.1)
@@ -90,7 +104,9 @@ DEPENDENCIES
   capybara
   dotenv
   lotus-controller!
+  lotus-model!
   lotus-router
+  lotus-utils!
   lotus-view
   pg
   pry

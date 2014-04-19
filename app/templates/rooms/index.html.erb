@@ -2,11 +2,13 @@
 
 <table>
   <tr>
+    <th>ID</th>
     <th>Name</th>
     <th>Description</th>
   </tr>
   <% rooms.each do |room| %>
     <tr>
+      <td><%= room.id %></td>
       <td><%= room.name %></td>
       <td><%= room.description %></td>
     </tr>

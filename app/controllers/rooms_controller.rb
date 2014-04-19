@@ -4,7 +4,7 @@ class RoomsController
   action 'Index' do
     expose :rooms
 
-    def initialize(repository: Room)
+    def initialize(repository: RoomRepository)
       @repository = repository
     end
 
@@ -19,13 +19,14 @@ class RoomsController
   end
 
   action 'Create' do
-    def initialize(repository: Room, form_class: RoomForm)
+    def initialize(repository: RoomRepository, entity_class: Room, form_class: RoomForm)
       @repository = repository
       @form_class = form_class
+      @entity_class = entity_class
     end
 
     def call(params)
-      @room = @repository.new
+      @room = @entity_class.new
       @form = @form_class.new(@room)
 
       unless @form.validate(params.fetch(:room).stringify_keys)
@@ -33,7 +34,7 @@ class RoomsController
       end
 
       @form.save
-      @room.save
+      @repository.persist(@room)
       return redirect_to Router.path(:rooms)
     end
   end

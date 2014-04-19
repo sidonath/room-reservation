@@ -1,8 +1,12 @@
 require 'spec_helper'
 
+class RoomStub
+  def self.new() end
+end
+
 class RoomRepositaryStub
   def self.all() end
-  def self.new() end
+  def self.persist(entity) end
 end
 
 describe RoomsController::Index do
@@ -26,14 +30,14 @@ describe RoomsController::Create do
       name: "foo",
       description: "bar"
     } } }
-  let(:action) { described_class.new(repository: RoomRepositaryStub) }
+  let(:action) { described_class.new(repository: RoomRepositaryStub, entity_class: RoomStub) }
 
   before do
-    allow(RoomRepositaryStub).to receive(:new) { room }
-    allow(room).to receive(:save)
+    allow(RoomStub).to receive(:new) { room }
+    allow(RoomRepositaryStub).to receive(:persist).with(room)
   end
 
-  it 'should pass the params when creating a room' do
+  it 'should pass the params to room' do
     action.call(params)
     expect(room.name).to eq('foo')
     expect(room.description).to eq('bar')
@@ -41,7 +45,7 @@ describe RoomsController::Create do
 
   it 'should save the room' do
     action.call(params)
-    expect(room).to have_received(:save)
+    expect(RoomRepositaryStub).to have_received(:persist).with(room)
   end
 
   it 'should redirect to the rooms index' do
