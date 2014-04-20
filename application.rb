@@ -38,9 +38,3 @@ RoomRepository.adapter = adapter
 Application = Lotus::Application.new
 
 require_relative 'config/routes'
-
-Application.build_rack_app do
-  use Rack::Static, :urls => ["/stylesheets"], :root => "public"
-
-  run Application
-end

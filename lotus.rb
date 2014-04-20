@@ -28,10 +28,6 @@ module Lotus
       @router = Lotus::Router.new(&block)
     end
 
-    def build_rack_app(&block)
-      Rack::Builder.new(&block).to_app
-    end
-
     def call(env)
       _call(env).tap do |response|
         @renderer.render(response)

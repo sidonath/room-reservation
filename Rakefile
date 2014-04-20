@@ -4,7 +4,7 @@ RSpec::Core::RakeTask.new(:spec)
 task default: :spec
 
 task :server do
-  exec 'bundle exec shotgun application.rb'
+  exec 'bundle exec shotgun'
 end
 
 task :console do
