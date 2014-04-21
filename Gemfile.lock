@@ -7,19 +7,18 @@ GIT
       rack (~> 1.5)
 
 GIT
-  remote: git://github.com/lotus/utils.git
-  revision: 37a010f2369b14555d3c0f78a26ee08a10c60a62
-  specs:
-    lotus-utils (0.1.1)
-
-GIT
-  remote: git://github.com/sidonath/model.git
-  revision: a7d64c1efd8605b88c7402dd2042de2c52db6dbf
-  branch: dont-insert-identity
+  remote: git://github.com/lotus/model.git
+  revision: 09bf3f4dc2948ec283711b044abaf1a96acfc3a4
   specs:
     lotus-model (0.1.0)
       lotus-utils (~> 0.1, > 0.1.0)
       sequel (~> 4.9)
+
+GIT
+  remote: git://github.com/lotus/utils.git
+  revision: 37a010f2369b14555d3c0f78a26ee08a10c60a62
+  specs:
+    lotus-utils (0.1.1)
 
 GEM
   remote: https://rubygems.org/
