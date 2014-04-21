@@ -22,10 +22,27 @@ module Lotus
 
     def initialize(renderer = RenderingPolicy.new)
       @renderer = renderer
+      @mappers = {}
+      @adapters = {}
     end
 
     def setup_router(&block)
       @router = Lotus::Router.new(&block)
+    end
+
+    def setup_mapper(name, &block)
+      mapper = Lotus::Model::Mapper.new(&block)
+      mapper.load!
+      @mappers[name.to_sym] = mapper
+    end
+
+    def setup_adapter(&block)
+      initializer = AdapterInitializer.new(self, &block)
+      @adapters[initializer.adapter_name] = initializer.adapter
+    end
+
+    def mapper(name)
+      @mappers[name.to_sym]
     end
 
     def call(env)
@@ -58,6 +75,61 @@ module Lotus
 
     def view_for(action)
       Object.const_get(action.class.name.gsub(/Controller/, ''))
+    end
+  end
+
+  class AdapterInitializer
+    attr_reader :adapter
+
+    def initialize(application, &block)
+      instance_eval(&block)
+
+      mapper = application.mapper(@mapper)
+      @adapter = @type.new(mapper, ENV.fetch(@database))
+
+      # is there a better way to access it?
+      @collections = mapper.instance_variable_get(:@collections)
+      assign_attributes
+      assign_adapter
+    end
+
+    def adapter_name
+      @name
+    end
+
+    private
+
+    def name(name)
+      @name = name.to_sym
+    end
+
+    def type(type)
+      @type = type
+    end
+
+    def mapper(mapper)
+      @mapper = mapper.to_sym
+    end
+
+    def database(database)
+      @database = database.to_s
+    end
+
+    def assign_attributes
+      @collections.each do |name, collection|
+        collection.entity.attributes = collection.attributes.keys - Array(collection.identity)
+      end
+    end
+
+    def assign_adapter
+      repositories = @collections.map { |name, collection|
+        repository_name = "#{collection.entity.name}#{Lotus::Model::Mapping::Collection::REPOSITORY_SUFFIX}"
+        Object.const_get(repository_name)
+      }
+
+      repositories.each do |repository|
+        repository.adapter = @adapter
+      end
     end
   end
 end
