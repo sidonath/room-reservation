@@ -1,12 +1,7 @@
-require 'lotus/router'
-require 'lotus/controller'
-require 'lotus/view'
-require 'lotus/model'
+require_relative 'lotus'
 require 'pathname'
 require 'dotenv'
-require 'sequel'
 require 'reform'
-require_relative 'lotus'
 
 Dotenv.load
 

@@ -112,5 +112,4 @@ DEPENDENCIES
   rake
   reform
   rspec
-  sequel
   shotgun

@@ -1,3 +1,8 @@
+require 'lotus/router'
+require 'lotus/controller'
+require 'lotus/view'
+require 'lotus/model'
+
 module FullStackPatch
   def response
     [ super, self ].flatten
