@@ -74,7 +74,18 @@ module Lotus
 
     private
     def render?(response)
-      return false unless (200..299).include?(response.first)
+      case response.first
+      # 1xx have no body by definition
+      when 100..199 then return false
+      # 204 No Content
+      # 304 Not Modified
+      when 204, 304 then return false
+      # Redirects: it doesn't make sense to render views for these
+      when 301, 302, 307, 308 then return false
+      # Don't try to render views for all server errors
+      when 500.599 then return false
+      end
+
       response.last.respond_to?(:to_rendering)
     end
 
