@@ -30,14 +30,15 @@ end
 
 describe RoomsController::Create do
   let(:room) { Room.new }
+  let(:room_form) { RoomForm.new(room) }
   let(:params) { { room: {
       name: "foo",
       description: "bar"
     } } }
-  let(:action) { described_class.new(repository: RoomRepositaryStub, entity_class: RoomStub) }
+  let(:action) { described_class.new(repository: RoomRepositaryStub) }
 
   before do
-    allow(RoomStub).to receive(:new) { room }
+    allow(FormProvider).to receive(:new_room) { room_form }
     allow(RoomRepositaryStub).to receive(:persist).with(room)
   end
 
@@ -59,11 +60,7 @@ describe RoomsController::Create do
   end
 
   describe 'given invalid room' do
-    let(:room_form) { RoomForm.new(room) }
-    let(:action) { described_class.new(repository: RoomRepositaryStub, entity_class: RoomStub, form_class: RoomFormStub) }
-
     before do
-      allow(RoomFormStub).to receive(:new) { room_form }
       allow(room_form).to receive(:validate) { false }
     end
 
