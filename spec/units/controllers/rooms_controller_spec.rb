@@ -61,7 +61,9 @@ describe RoomsController::Create do
 
   describe 'given invalid room' do
     before do
-      allow(room_form).to receive(:validate) { false }
+      allow(room_form).to receive(:populate) { |params, listener|
+        listener.form_invalid
+      }
     end
 
     it 'should set status to 422' do

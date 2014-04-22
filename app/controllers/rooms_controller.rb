@@ -31,15 +31,13 @@ class RoomsController
 
     def call(params)
       @form = FormProvider.new_room
+      room  = @form.populate(params.fetch(:room), self)
+      @repository.persist(room)
+      redirect_to @router.path(:rooms)
+    end
 
-      unless @form.validate(params.fetch(:room).stringify_keys)
-        self.status = 422
-        return
-      end
-
-      @form.save
-      @repository.persist(@form.model)
-      return redirect_to @router.path(:rooms)
+    def form_invalid
+      throw 422
     end
   end
 end

@@ -1,4 +1,4 @@
-class RoomForm < Reform::Form
+class RoomForm < Form
   property :name
   property :description
 
