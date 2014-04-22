@@ -83,7 +83,7 @@ module Lotus
       # Redirects: it doesn't make sense to render views for these
       when 301, 302, 307, 308 then return false
       # Don't try to render views for all server errors
-      when 500.599 then return false
+      when 500..599 then return false
       end
 
       response.last.respond_to?(:to_rendering)
