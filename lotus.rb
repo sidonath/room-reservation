@@ -104,7 +104,7 @@ module Lotus
       @adapter = @type.new(mapper, ENV.fetch(@database))
 
       # is there a better way to access it?
-      @collections = mapper.instance_variable_get(:@collections)
+      @collections = mapper.collections
       assign_attributes
       assign_adapter
     end
