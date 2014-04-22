@@ -20,4 +20,6 @@ module Rooms
       @router = router
     end
   end
+
+  Create = New
 end

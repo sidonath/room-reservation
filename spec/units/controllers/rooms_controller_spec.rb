@@ -4,6 +4,10 @@ class RoomStub
   def self.new() end
 end
 
+class RoomFormStub
+  def self.new() end
+end
+
 class RoomRepositaryStub
   def self.all() end
   def self.persist(entity) end
@@ -52,5 +56,20 @@ describe RoomsController::Create do
     response = action.call(params)
     expect(response.fetch(0)).to eq(302)
     expect(response.fetch(1).fetch('Location')).to eq('/rooms')
+  end
+
+  describe 'given invalid room' do
+    let(:room_form) { RoomForm.new(room) }
+    let(:action) { described_class.new(repository: RoomRepositaryStub, entity_class: RoomStub, form_class: RoomFormStub) }
+
+    before do
+      allow(RoomFormStub).to receive(:new) { room_form }
+      allow(room_form).to receive(:validate) { false }
+    end
+
+    it 'should set status to 422' do
+      response = action.call(params)
+      expect(response.fetch(0)).to eq(422)
+    end
   end
 end

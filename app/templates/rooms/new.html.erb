@@ -3,11 +3,11 @@
 <form action="<%= router.path(:rooms) %>" method="POST">
   <div>
     <label>Name:</label>
-    <input name="room[name]">
+    <input name="room[name]" value="<%= form.name %>">
   </div>
   <div>
     <label>Description:</label>
-    <textarea name="room[description]"></textarea>
+    <textarea name="room[description]"><%= form.description %></textarea>
   </div>
   <div>
     <button type="submit">Create new room</button>

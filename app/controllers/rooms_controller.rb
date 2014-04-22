@@ -14,11 +14,21 @@ class RoomsController
   end
 
   action 'New' do
+    expose :form
+
+    def initialize(entity_class: Room, form_class: RoomForm)
+      @entity_class = Room
+      @form_class = RoomForm
+    end
+
     def call(params)
+      @form = @form_class.new(@entity_class.new)
     end
   end
 
   action 'Create' do
+    expose :form
+
     def initialize(repository: RoomRepository, entity_class: Room, form_class: RoomForm, router: Application.router)
       @repository = repository
       @form_class = form_class
@@ -31,8 +41,8 @@ class RoomsController
       @form = @form_class.new(@room)
 
       unless @form.validate(params.fetch(:room).stringify_keys)
-        return redirect_to @router.path(:rooms, :new)
-        return false
+        self.status = 422
+        return
       end
 
       @form.save
