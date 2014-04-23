@@ -104,7 +104,8 @@ module Lotus
       instance_eval(&block)
 
       mapper = application.mapper(@mapper)
-      @adapter = @type.new(mapper, ENV.fetch(@database))
+      uri = ENV.fetch(@database) if @database
+      @adapter = @type.new(mapper, uri)
 
       # is there a better way to access it?
       @collections = mapper.collections

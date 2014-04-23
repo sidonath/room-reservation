@@ -9,7 +9,7 @@ class RoomsController
     end
 
     def call(params)
-      @rooms = @repository.all
+      @rooms = @repository.sorted_by_name
     end
   end
 

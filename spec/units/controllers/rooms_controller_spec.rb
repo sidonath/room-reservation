@@ -9,7 +9,7 @@ class RoomFormStub
 end
 
 class RoomRepositaryStub
-  def self.all() end
+  def self.sorted_by_name() end
   def self.persist(entity) end
 end
 
@@ -19,7 +19,7 @@ describe RoomsController::Index do
   let(:action) { described_class.new(repository: RoomRepositaryStub) }
 
   before do
-    allow(RoomRepositaryStub).to receive(:all) { rooms }
+    allow(RoomRepositaryStub).to receive(:sorted_by_name) { rooms }
   end
 
   it 'should expose rooms obtained from repository' do

@@ -6,6 +6,13 @@ Bundler.require(:default, :test)
 require 'rspec'
 require 'capybara/rspec'
 require 'application'
+require 'lotus/model/adapters/memory_adapter'
+
+Application.setup_adapter do
+  name     :test
+  type     Lotus::Model::Adapters::MemoryAdapter
+  mapper   :default
+end
 
 module RSpec
   module FeatureExampleGroup
