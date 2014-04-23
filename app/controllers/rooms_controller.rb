@@ -17,7 +17,7 @@ class RoomsController
     expose :form
 
     def call(params)
-      @form = FormProvider.new_room
+      @form = FormFactory.new_room
     end
   end
 
@@ -30,7 +30,7 @@ class RoomsController
     end
 
     def call(params)
-      @form = FormProvider.new_room
+      @form = FormFactory.new_room
       room  = @form.populate(params.fetch(:room), self)
       @repository.persist(room)
       redirect_to @router.path(:rooms)

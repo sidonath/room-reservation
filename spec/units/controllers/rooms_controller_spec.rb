@@ -38,7 +38,7 @@ describe RoomsController::Create do
   let(:action) { described_class.new(repository: RoomRepositaryStub) }
 
   before do
-    allow(FormProvider).to receive(:new_room) { room_form }
+    allow(FormFactory).to receive(:new_room) { room_form }
     allow(RoomRepositaryStub).to receive(:persist).with(room)
   end
 
