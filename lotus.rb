@@ -69,6 +69,8 @@ module Lotus
         action = response.pop
         view   = view_for(action)
         response[2] = Array(view.render(action.to_rendering))
+      else
+        response[2] = Array(response[2])
       end
     end
 
@@ -84,6 +86,7 @@ module Lotus
       when 301, 302, 307, 308 then return false
       # Don't try to render views for all server errors
       when 500..599 then return false
+      when 404 then return false
       end
 
       response.last.respond_to?(:to_rendering)
