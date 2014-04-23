@@ -5,7 +5,10 @@ require 'reform'
 
 Dotenv.load
 
-Lotus::Controller.handle_exceptions = false
+if ['development', 'test'].include? ENV.fetch('RACK_ENV')
+  Lotus::Controller.handle_exceptions = false
+end
+
 Lotus::Controller.handled_exceptions = { Lotus::Model::EntityNotFound => 404 }
 
 ApplicationRoot = Pathname.new(__FILE__).dirname

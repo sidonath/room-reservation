@@ -1,4 +1,5 @@
 $:.unshift __dir__ + '/..'
+ENV['RACK_ENV'] ||= 'test'
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default, :test)
