@@ -40,4 +40,39 @@ class RoomsController
       throw 422
     end
   end
+
+  action 'Edit' do
+    expose :form
+    handle_exception Lotus::Model::EntityNotFound, 404
+
+    def initialize(repository: RoomRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @form = FormFactory.edit_room(@repository.find(params.fetch(:id)))
+    end
+  end
+
+  action 'Update' do
+    expose :form
+    handle_exception Lotus::Model::EntityNotFound, 404
+
+    def initialize(repository: RoomRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @form = FormFactory.edit_room(@repository.find(params.fetch(:id)))
+      room  = @form.populate(params.fetch(:room), self)
+      @repository.persist(room)
+      redirect_to @router.path(:rooms)
+    end
+
+    def form_invalid
+      throw 422
+    end
+  end
 end

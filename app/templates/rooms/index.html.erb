@@ -5,12 +5,14 @@
     <th>ID</th>
     <th>Name</th>
     <th>Description</th>
+    <th></th>
   </tr>
   <% rooms.each do |room| %>
     <tr>
       <td><%= room.id %></td>
       <td><%= room.name %></td>
       <td><%= room.description %></td>
+      <td><a href="<%= router.path(:edit_rooms, room.id) %>">Edit</a></td>
     </tr>
   <% end %>
 </table>

@@ -1,0 +1,12 @@
+<h2>Edit Room</h2>
+
+<form action="<%= router.path(:rooms, form.model.id) %>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+  <%= render partial: 'rooms/form' %>
+  <div class="row">
+    <div class="small-12 columns">
+      <a href="<%= router.path(:rooms) %>">Cancel</a>
+      <button type="submit">Save changes</button>
+    </div>
+  </div>
+</form>
