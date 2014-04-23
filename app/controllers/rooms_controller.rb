@@ -43,7 +43,6 @@ class RoomsController
 
   action 'Edit' do
     expose :form
-    handle_exception Lotus::Model::EntityNotFound, 404
 
     def initialize(repository: RoomRepository, router: Application.router)
       @repository = repository
@@ -57,7 +56,6 @@ class RoomsController
 
   action 'Update' do
     expose :form
-    handle_exception Lotus::Model::EntityNotFound, 404
 
     def initialize(repository: RoomRepository, router: Application.router)
       @repository = repository

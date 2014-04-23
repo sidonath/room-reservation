@@ -6,6 +6,7 @@ require 'reform'
 Dotenv.load
 
 Lotus::Controller.handle_exceptions = false
+Lotus::Controller.handled_exceptions = { Lotus::Model::EntityNotFound => 404 }
 
 ApplicationRoot = Pathname.new(__FILE__).dirname
 Dir.glob(ApplicationRoot.join('lib/**/*.rb')) { |file| require file }
