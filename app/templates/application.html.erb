@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Reservation System</title>
+
+  <link rel="stylesheet" href="/stylesheets/foundation.min.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
+  <script src="/javascripts/modernizr.js"></script>
 </head>
 
 <body>
-  <%= yield %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= yield %>
+    </div>
+  </div>
+
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/foundation.min.js"></script>
+  <script src="/javascripts/application.js"></script>
 </body>
 </html>

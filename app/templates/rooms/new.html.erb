@@ -1,19 +1,24 @@
 <h2>New Room</h2>
 
 <form action="<%= router.path(:rooms) %>" method="POST">
-  <div>
-    <label>Name:</label>
-    <input name="room[name]" value="<%= form.name %>">
+  <div class="row">
+    <div class="small-12 columns">
+      <label>Name:
+        <input type="text" name="room[name]" value="<%= form.name %>">
+      </label>
+    </div>
   </div>
-  <div>
-    <label>Description:</label>
-    <textarea name="room[description]"><%= form.description %></textarea>
+  <div class="row">
+    <div class="small-12 columns">
+      <label>Description:
+        <textarea name="room[description]"><%= form.description %></textarea>
+      </label>
+    </div>
   </div>
-  <div>
-    <button type="submit">Create new room</button>
+  <div class="row">
+    <div class="small-12 columns">
+      <a href="<%= router.path(:rooms) %>">Cancel</a>
+      <button type="submit">Create new room</button>
+    </div>
   </div>
 </form>
-
-<p>
-  <a href="<%= router.path(:rooms) %>">Cancel</a>
-</p>
