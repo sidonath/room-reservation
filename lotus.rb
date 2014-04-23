@@ -70,7 +70,7 @@ module Lotus
         view   = view_for(action)
         response[2] = Array(view.render(action.to_rendering))
       else
-        response[2] = Array(response[2])
+        response[2] = [] unless response[2].respond_to? :each
       end
     end
 
