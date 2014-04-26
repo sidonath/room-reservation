@@ -1,1 +1,4 @@
+.bundle
 .env
+bin
+tmp
