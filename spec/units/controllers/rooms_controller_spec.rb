@@ -142,3 +142,31 @@ describe RoomsController::Update do
     end
   end
 end
+
+describe RoomsController::Destroy do
+  let(:room) { Room.new(id: 1, name: "Big Room", description: "It's big.") }
+  let(:room_form) { RoomForm.new(room) }
+  let(:params) { { id: '1' } }
+  let(:action) { described_class.new(repository: RoomRepositaryStub) }
+
+  before do
+    allow(RoomRepositaryStub).to receive(:find).with("1") { room }
+    allow(RoomRepositaryStub).to receive(:delete).with(room)
+  end
+
+  it 'should find the room' do
+    action.call(params)
+    expect(RoomRepositaryStub).to have_received(:find).with('1')
+  end
+
+  it 'should delete the room' do
+    action.call(params)
+    expect(RoomRepositaryStub).to have_received(:delete).with(room)
+  end
+
+  it 'should redirect to the rooms index' do
+    response = action.call(params)
+    expect(response.fetch(0)).to eq(302)
+    expect(response.fetch(1).fetch('Location')).to eq('/rooms')
+  end
+end

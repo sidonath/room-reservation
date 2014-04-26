@@ -12,7 +12,13 @@
       <td><%= room.id %></td>
       <td><%= room.name %></td>
       <td><%= room.description %></td>
-      <td><a href="<%= router.path(:edit_rooms, room.id) %>">Edit</a></td>
+      <td>
+        <a href="<%= router.path(:edit_rooms, room.id) %>">Edit</a>
+        <form action="<%= router.path(:rooms, room.id) %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="button tiny">Delete</button>
+        </form>
+      </td>
     </tr>
   <% end %>
 </table>

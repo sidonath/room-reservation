@@ -73,4 +73,17 @@ class RoomsController
       throw 422
     end
   end
+
+  action 'Destroy' do
+    def initialize(repository: RoomRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      room = @repository.find(params.fetch(:id))
+      @repository.delete(room)
+      redirect_to @router.path(:rooms)
+    end
+  end
 end
