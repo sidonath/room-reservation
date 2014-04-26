@@ -11,6 +11,8 @@ gem 'dotenv'
 gem 'shotgun'
 gem 'pry'
 gem 'reform'
+gem 'guard'
+gem 'guard-rspec'
 
 group :test do
   gem 'rspec'
