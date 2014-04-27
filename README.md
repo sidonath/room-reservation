@@ -20,7 +20,7 @@ You can see this application running [here](http://shrouded-plains-2400.herokuap
 - [x] Index/Create Rooms
 - [x] Show validation errors on create
 - [x] Updating rooms
-- [ ] Deleting rooms
+- [x] Deleting rooms
 - [ ] Implement Teams CRUD
 - [ ] Implement authorization for teams
 - [ ] Implement authorization for admins
