@@ -4,10 +4,6 @@ class RoomStub
   def self.new() end
 end
 
-class RoomFormStub
-  def self.new() end
-end
-
 class RoomRepositaryStub
   def self.find(id) end
   def self.persist(entity) end
