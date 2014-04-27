@@ -13,6 +13,19 @@ class RoomsController
     end
   end
 
+  action 'Show' do
+    expose :model
+
+    def initialize(repository: RoomRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @model = @repository.find(params.fetch(:id))
+    end
+  end
+
   action 'New' do
     expose :form
 

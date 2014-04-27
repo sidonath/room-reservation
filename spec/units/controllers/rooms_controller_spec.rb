@@ -9,8 +9,9 @@ class RoomFormStub
 end
 
 class RoomRepositaryStub
-  def self.sorted_by_name() end
+  def self.find(id) end
   def self.persist(entity) end
+  def self.sorted_by_name() end
 end
 
 describe RoomsController::Index do
@@ -25,6 +26,26 @@ describe RoomsController::Index do
   it 'should expose rooms obtained from repository' do
     action.call({})
     expect(action.exposures[:rooms]).to eq(rooms)
+  end
+end
+
+describe RoomsController::Show do
+  let(:room) { Room.new(id: 1, name: "Foo", description: "Bar") }
+  let(:params) { { id: '1' } }
+  let(:action) { described_class.new(repository: RoomRepositaryStub) }
+
+  before do
+    allow(RoomRepositaryStub).to receive(:find).with('1') { room }
+  end
+
+  it 'should find the room' do
+    action.call(params)
+    expect(RoomRepositaryStub).to have_received(:find).with('1')
+  end
+
+  it 'should expose the room as model' do
+    action.call(params)
+    expect(action.exposures[:model]).to eq(room)
   end
 end
 

@@ -10,7 +10,11 @@
   <% rooms.each do |room| %>
     <tr>
       <td><%= room.id %></td>
-      <td><%= room.name %></td>
+      <td>
+        <a href="<%= router.path(:rooms, room.id) %>">
+          <%= room.name %>
+        </a>
+      </td>
       <td><%= room.description %></td>
       <td>
         <a href="<%= router.path(:edit_rooms, room.id) %>">Edit</a>

@@ -1,0 +1,24 @@
+<h2>Room</h2>
+
+<p>
+  ID: <%= model.id %>
+</p>
+
+<p>
+  Name: <%= model.name %>
+</p>
+
+<p>
+  Description:
+</p>
+<div>
+  <%= model.description %>
+</div>
+
+<p>
+  <a href="<%= router.path(:edit_rooms, model.id) %>">Edit</a>
+  <form action="<%= router.path(:rooms, model.id) %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="button tiny">Delete</button>
+  </form>
+</div>
