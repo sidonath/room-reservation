@@ -1,9 +1,9 @@
-module FormFactory
-  def self.new_room
+module RoomsFormFactory
+  def self.create
     RoomForm.new(Room.new)
   end
 
-  def self.edit_room(room)
+  def self.update(room)
     RoomForm.new(room)
   end
 end

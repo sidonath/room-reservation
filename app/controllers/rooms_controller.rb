@@ -30,7 +30,7 @@ class RoomsController
     expose :form
 
     def call(params)
-      @form = FormFactory.new_room
+      @form = RoomsFormFactory.create
     end
   end
 
@@ -43,7 +43,7 @@ class RoomsController
     end
 
     def call(params)
-      @form = FormFactory.new_room
+      @form = RoomsFormFactory.create
       room  = @form.populate(params.fetch(:room), self)
       @repository.persist(room)
       redirect_to @router.path(:rooms)
@@ -63,7 +63,7 @@ class RoomsController
     end
 
     def call(params)
-      @form = FormFactory.edit_room(@repository.find(params.fetch(:id)))
+      @form = RoomsFormFactory.update(@repository.find(params.fetch(:id)))
     end
   end
 
@@ -76,7 +76,7 @@ class RoomsController
     end
 
     def call(params)
-      @form = FormFactory.edit_room(@repository.find(params.fetch(:id)))
+      @form = RoomsFormFactory.update(@repository.find(params.fetch(:id)))
       room  = @form.populate(params.fetch(:room), self)
       @repository.persist(room)
       redirect_to @router.path(:rooms)
