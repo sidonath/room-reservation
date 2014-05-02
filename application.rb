@@ -12,6 +12,19 @@ end
 Lotus::Controller.handled_exceptions = { Lotus::Model::EntityNotFound => 404 }
 
 ApplicationRoot = Pathname.new(__FILE__).dirname
+
+module RoomReservation
+  module Action
+    def self.included(base)
+      base.class_eval do
+        include Lotus::Action
+        include Flash
+        expose :router, :model
+      end
+    end
+  end
+end
+
 Dir.glob(ApplicationRoot.join('lib/**/*.rb')) { |file| require file }
 Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
 

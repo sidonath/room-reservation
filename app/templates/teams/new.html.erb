@@ -1,0 +1,11 @@
+<h2>New Team</h2>
+
+<form action="<%= router.path(:teams) %>" method="POST">
+  <%= render partial: 'teams/form' %>
+  <div class="row">
+    <div class="small-12 columns">
+      <a href="<%= router.path(:teams) %>">Cancel</a>
+      <button type="submit">Add a team</button>
+    </div>
+  </div>
+</form>

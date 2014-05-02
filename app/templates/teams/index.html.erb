@@ -1,0 +1,37 @@
+<% flash.given :notice  do |notice| %>
+<div data-alert class="alert-box success">
+  <%= notice %>
+  <a href="#" class="close">&times;</a>
+</div>
+<% end %>
+
+<h2>Teams</h2>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  <% model.each do |team| %>
+    <tr>
+      <td><%= team.id %></td>
+      <td>
+        <a href="<%= router.path(:teams, team.id) %>">
+          <%= team.name %>
+        </a>
+      </td>
+      <td>
+        <a href="<%= router.path(:edit_teams, team.id) %>">Edit</a>
+        <form action="<%= router.path(:teams, team.id) %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="button tiny">Delete</button>
+        </form>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <a href="<%= router.path(:teams, :new) %>">Add a team</a>
+</p>

@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="small-12 columns <%= model.errors[:name].length > 0 ? 'error' : nil%>">
+    <label>Name:
+      <input type="text" name="team[name]" value="<%= model.name %>">
+    </label>
+    <% if model.errors[:name].length > 0 %>
+      <small class="error"><%= model.errors[:name].join(', ') %></small>
+    <% end %>
+  </div>
+</div>

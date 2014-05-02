@@ -18,7 +18,10 @@ module RSpec
   module FeatureExampleGroup
     def self.included(group)
       group.metadata[:type] = :feature
-      Capybara.app = Application
+      Capybara.app = Rack::Builder.new do
+        use Rack::Session::Cookie, secret: 'foo'
+        run Application
+      end
     end
   end
 end
