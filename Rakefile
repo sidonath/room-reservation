@@ -12,5 +12,8 @@ task :console do
 end
 
 task :migrate do
-  exec "sequel -m db/migrations `dotenv 'echo $DATABASE_URL'`"
+  require 'dotenv'
+  Dotenv.load
+
+  exec "sequel -m db/migrations #{ENV.fetch('DATABASE_URL')}"
 end

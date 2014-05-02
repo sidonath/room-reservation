@@ -31,7 +31,7 @@ You can see this application running [here](http://shrouded-plains-2400.herokuap
 
 1. Clone repo
 2. Run `bundle install`
-3. Copy `.env.example` into `.env` and edit it to your liking
+3. Copy `.env.example` into `.env` and edit it to your liking (use `SecureRandom.hex(64)` to generate a key for `RACK_SECRET`)
 4. Create the database (e.g. `createdb lotus_model_test`, but you should be able to use any RDBMS)
-3. Migrate the database ``sequel -m db/migrations `dotenv 'echo $DATABASE_URL'` ``
-4. Start the server with `rake server`
+3. Migrate the database ``bundle exec rake migrate``
+4. Start the server with `bundle exec rake server` (it will start a server with [Shotgun](https://github.com/rtomayko/shotgun))
