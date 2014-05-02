@@ -10,3 +10,7 @@ end
 task :console do
   exec 'bundle exec pry -r./application.rb'
 end
+
+task :migrate do
+  exec "sequel -m db/migrations `dotenv 'echo $DATABASE_URL'`"
+end
