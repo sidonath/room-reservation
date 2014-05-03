@@ -15,6 +15,10 @@ class TeamsController
   class New
     include RoomReservation::Action
 
+    def initialize(router: Application.router)
+      @router = router
+    end
+
     def call(params)
       @model = TeamsFormFactory.create
     end
