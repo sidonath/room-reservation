@@ -1,0 +1,12 @@
+<h2>Edit Team</h2>
+
+<form action="<%= router.path(:teams, model.model.id) %>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+  <%= render partial: 'teams/form' %>
+  <div class="row">
+    <div class="small-12 columns">
+      <a href="<%= router.path(:teams) %>">Cancel</a>
+      <button type="submit">Update the team</button>
+    </div>
+  </div>
+</form>

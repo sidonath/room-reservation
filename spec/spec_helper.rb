@@ -8,7 +8,7 @@ require 'capybara/rspec'
 require 'application'
 require 'lotus/model/adapters/memory_adapter'
 
-Application.setup_adapter do
+adapter = Application.setup_adapter do
   name     :test
   type     Lotus::Model::Adapters::MemoryAdapter
   mapper   :default
@@ -20,6 +20,7 @@ module RSpec
       group.metadata[:type] = :feature
       Capybara.app = Rack::Builder.new do
         use Rack::Session::Cookie, secret: 'foo'
+        use Rack::MethodOverride
         run Application
       end
     end
@@ -38,4 +39,10 @@ RSpec.configure do |c|
   }
 
   c.include Capybara::DSL, type: :feature
+
+  c.before do
+    Application.mapper(:default).collections.each do |collection|
+      adapter.clear collection.first
+    end
+  end
 end

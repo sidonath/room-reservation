@@ -10,4 +10,11 @@ module Teams
   end
 
   Create = New
+
+  class Edit
+    include Lotus::View
+    layout :application
+  end
+
+  Update = Edit
 end

@@ -45,4 +45,39 @@ class TeamsController
       throw 422
     end
   end
+
+  class Edit
+    include RoomReservation::Action
+
+    def initialize(repository: TeamRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @model = TeamsFormFactory.update(@repository.find(params[:id]))
+    end
+  end
+
+  class Update
+    include RoomReservation::Action
+
+    def initialize(repository: TeamRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @model = TeamsFormFactory.update(@repository.find(params[:id]))
+      team = @model.populate(params.fetch(:team), self)
+      @repository.persist(team)
+
+      flash[:notice] = 'The team was updated!'
+      redirect_to @router.path(:teams)
+    end
+
+    def form_invalid
+      throw 422
+    end
+  end
 end
