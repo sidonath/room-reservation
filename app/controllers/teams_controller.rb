@@ -2,7 +2,7 @@ class TeamsController
   class Index
     include RoomReservation::Action
 
-    def initialize(repository = TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository, router: Application.router)
       @repository = repository
       @router = router
     end
