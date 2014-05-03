@@ -21,7 +21,7 @@ You can see this application running [here](http://shrouded-plains-2400.herokuap
 - [x] Show validation errors on create
 - [x] Updating rooms
 - [x] Deleting rooms
-- [ ] Implement Teams CRUD
+- [x] Implement Teams CRUD
 - [ ] Implement authorization for teams
 - [ ] Implement authorization for admins
 - [ ] Allow teams to book a room at a specific time

@@ -4,6 +4,11 @@ module Teams
     layout :application
   end
 
+  class Show
+    include Lotus::View
+    layout :application
+  end
+
   class New
     include Lotus::View
     layout :application

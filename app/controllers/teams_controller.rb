@@ -12,6 +12,19 @@ class TeamsController
     end
   end
 
+  class Show
+    include RoomReservation::Action
+
+    def initialize(repository: TeamRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @model = @repository.find(params[:id])
+    end
+  end
+
   class New
     include RoomReservation::Action
 
@@ -78,6 +91,23 @@ class TeamsController
 
     def form_invalid
       throw 422
+    end
+  end
+
+  class Destroy
+    include RoomReservation::Action
+
+    def initialize(repository: TeamRepository, router: Application.router)
+      @repository = repository
+      @router = router
+    end
+
+    def call(params)
+      @model = @repository.find(params[:id])
+      @repository.delete(@model)
+
+      flash[:notice] = 'The team was deleted!'
+      redirect_to @router.path(:teams)
     end
   end
 end
