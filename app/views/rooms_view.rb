@@ -12,6 +12,10 @@ module Rooms
   class New
     include Lotus::View
     layout :application
+
+    def form
+      FormPresenter.new(locals[:form])
+    end
   end
 
   Create = New
@@ -19,6 +23,10 @@ module Rooms
   class Edit
     include Lotus::View
     layout :application
+
+    def form
+      FormPresenter.new(locals[:form])
+    end
   end
 
   Update = Edit

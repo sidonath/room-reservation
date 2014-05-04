@@ -12,6 +12,10 @@ module Teams
   class New
     include Lotus::View
     layout :application
+
+    def model
+      FormPresenter.new(locals[:model])
+    end
   end
 
   Create = New
@@ -19,6 +23,10 @@ module Teams
   class Edit
     include Lotus::View
     layout :application
+
+    def model
+      FormPresenter.new(locals[:model])
+    end
   end
 
   Update = Edit

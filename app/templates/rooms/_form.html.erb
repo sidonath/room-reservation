@@ -1,20 +1,21 @@
 <div class="row">
-  <div class="small-12 columns <%= form.errors[:name].length > 0 ? 'error' : nil%>">
+  <div class="small-12 columns <%= form.error_class(:name) %>">
     <label>Name:
       <input type="text" name="room[name]" value="<%= form.name %>">
     </label>
-    <% if form.errors[:name].length > 0 %>
-      <small class="error"><%= form.errors[:name].join(', ') %></small>
+    <% form.errors_for(:name) do |message| %>
+      <small class="error"><%= message %></small>
     <% end %>
   </div>
 </div>
+
 <div class="row">
-  <div class="small-12 columns <%= form.errors[:description].length > 0 ? 'error' : nil%>">
+  <div class="small-12 columns <%= form.error_class(:description) %>">
     <label>Description:
       <textarea name="room[description]"><%= form.description %></textarea>
     </label>
-    <% if form.errors[:description].length > 0 %>
-      <small class="error"><%= form.errors[:description].join(', ') %></small>
+    <% form.errors_for(:description) do |message| %>
+      <small class="error"><%= message %></small>
     <% end %>
   </div>
 </div>

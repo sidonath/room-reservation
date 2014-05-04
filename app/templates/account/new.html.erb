@@ -3,34 +3,34 @@
 <form action="<%= router.path(:account) %>" method="POST">
 
   <div class="row">
-    <div class="small-12 columns <%= model.errors[:email].length > 0 ? 'error' : nil%>">
+    <div class="small-12 columns <%= model.error_class(:email) %>">
       <label>Email:
         <input type="text" name="user[email]" value="<%= model.email %>">
       </label>
-      <% if model.errors[:email].length > 0 %>
-        <small class="error"><%= model.errors[:email].join(', ') %></small>
+      <% model.errors_for(:email) do |message| %>
+        <small class="error"><%= message %></small>
       <% end %>
     </div>
   </div>
 
   <div class="row">
-    <div class="small-12 columns <%= model.errors[:password].length > 0 ? 'error' : nil%>">
+    <div class="small-12 columns <%= model.error_class(:password) %>">
       <label>Password:
         <input type="password" name="user[password]" value="<%= model.password %>">
       </label>
-      <% if model.errors[:password].length > 0 %>
-        <small class="error"><%= model.errors[:password].join(', ') %></small>
+      <% model.errors_for(:password) do |message| %>
+        <small class="error"><%= message %></small>
       <% end %>
     </div>
   </div>
 
   <div class="row">
-    <div class="small-12 columns <%= model.errors[:password_confirmation].length > 0 ? 'error' : nil%>">
+    <div class="small-12 columns <%= model.error_class(:password_confirmation) %>">
       <label>Please confirm your password:
         <input type="password" name="user[password_confirmation]" value="<%= model.password_confirmation %>">
       </label>
-      <% if model.errors[:password_confirmation].length > 0 %>
-        <small class="error"><%= model.errors[:password_confirmation].join(', ') %></small>
+      <% model.errors_for(:password_confirmation) do |message| %>
+        <small class="error"><%= message %></small>
       <% end %>
     </div>
   </div>
