@@ -1,7 +1,6 @@
 class RoomsController
-  include Lotus::Controller
-
-  action 'Index' do
+  class Index
+    include RoomReservation::Action
     expose :rooms
 
     def initialize(repository: RoomRepository)
@@ -13,12 +12,11 @@ class RoomsController
     end
   end
 
-  action 'Show' do
-    expose :model
+  class Show
+    include RoomReservation::Action
 
-    def initialize(repository: RoomRepository, router: Application.router)
+    def initialize(repository: RoomRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -26,7 +24,8 @@ class RoomsController
     end
   end
 
-  action 'New' do
+  class New
+    include RoomReservation::Action
     expose :form
 
     def call(params)
@@ -34,12 +33,12 @@ class RoomsController
     end
   end
 
-  action 'Create' do
+  class Create
+    include RoomReservation::Action
     expose :form
 
-    def initialize(repository: RoomRepository, router: Application.router)
+    def initialize(repository: RoomRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -54,12 +53,12 @@ class RoomsController
     end
   end
 
-  action 'Edit' do
+  class Edit
+    include RoomReservation::Action
     expose :form
 
-    def initialize(repository: RoomRepository, router: Application.router)
+    def initialize(repository: RoomRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -67,12 +66,12 @@ class RoomsController
     end
   end
 
-  action 'Update' do
+  class Update
+    include RoomReservation::Action
     expose :form
 
-    def initialize(repository: RoomRepository, router: Application.router)
+    def initialize(repository: RoomRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -87,10 +86,10 @@ class RoomsController
     end
   end
 
-  action 'Destroy' do
-    def initialize(repository: RoomRepository, router: Application.router)
+  class Destroy
+    include RoomReservation::Action
+    def initialize(repository: RoomRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)

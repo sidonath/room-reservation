@@ -2,9 +2,8 @@ class TeamsController
   class Index
     include RoomReservation::Action
 
-    def initialize(repository: TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -15,9 +14,8 @@ class TeamsController
   class Show
     include RoomReservation::Action
 
-    def initialize(repository: TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -28,10 +26,6 @@ class TeamsController
   class New
     include RoomReservation::Action
 
-    def initialize(router: Application.router)
-      @router = router
-    end
-
     def call(params)
       @model = TeamsFormFactory.create
     end
@@ -40,9 +34,8 @@ class TeamsController
   class Create
     include RoomReservation::Action
 
-    def initialize(repository: TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -62,9 +55,8 @@ class TeamsController
   class Edit
     include RoomReservation::Action
 
-    def initialize(repository: TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -75,9 +67,8 @@ class TeamsController
   class Update
     include RoomReservation::Action
 
-    def initialize(repository: TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
@@ -97,9 +88,8 @@ class TeamsController
   class Destroy
     include RoomReservation::Action
 
-    def initialize(repository: TeamRepository, router: Application.router)
+    def initialize(repository: TeamRepository)
       @repository = repository
-      @router = router
     end
 
     def call(params)
