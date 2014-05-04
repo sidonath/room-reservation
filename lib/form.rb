@@ -1,8 +1,12 @@
 class Form < Reform::Form
-  def validate(params, listener)
-    return if super(params.stringify_keys)
+  def validate(params, listener=nil)
+    return true if super(params.stringify_keys)
 
-    listener.form_invalid
+    if listener
+      listener.form_invalid
+    end
+
+    false
   end
 
   def populate(*args)

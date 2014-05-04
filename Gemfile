@@ -13,6 +13,7 @@ gem 'pry'
 gem 'reform'
 gem 'guard'
 gem 'guard-rspec'
+gem 'bcrypt-ruby'
 
 group :test do
   gem 'rspec'

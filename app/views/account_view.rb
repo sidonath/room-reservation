@@ -1,6 +1,8 @@
-module Home
-  class Index
+class Account
+  class New
     include Lotus::View
     layout :application
   end
+
+  Create = New
 end

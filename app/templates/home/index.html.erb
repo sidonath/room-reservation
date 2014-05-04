@@ -1,1 +1,10 @@
-<p><%= greet %></p>
+<% flash.given :notice  do |notice| %>
+<div data-alert class="alert-box success">
+  <%= notice %>
+  <a href="#" class="close">&times;</a>
+</div>
+<% end %>
+
+<p>
+  <a href="<%= router.path(:new_account) %>">Register</a>
+</p>

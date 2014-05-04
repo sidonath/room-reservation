@@ -20,7 +20,13 @@ module RoomReservation
         include Lotus::Action
         include Flash
         expose :router, :model
+
+        before :set_router
       end
+    end
+
+    def set_router
+      @router = Application.router
     end
   end
 end

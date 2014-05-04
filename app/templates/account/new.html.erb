@@ -1,0 +1,43 @@
+<h2>Registration</h2>
+
+<form action="<%= router.path(:account) %>" method="POST">
+
+  <div class="row">
+    <div class="small-12 columns <%= model.errors[:email].length > 0 ? 'error' : nil%>">
+      <label>Email:
+        <input type="text" name="user[email]" value="<%= model.email %>">
+      </label>
+      <% if model.errors[:email].length > 0 %>
+        <small class="error"><%= model.errors[:email].join(', ') %></small>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns <%= model.errors[:password].length > 0 ? 'error' : nil%>">
+      <label>Password:
+        <input type="password" name="user[password]" value="<%= model.password %>">
+      </label>
+      <% if model.errors[:password].length > 0 %>
+        <small class="error"><%= model.errors[:password].join(', ') %></small>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns <%= model.errors[:password_confirmation].length > 0 ? 'error' : nil%>">
+      <label>Please confirm your password:
+        <input type="password" name="user[password_confirmation]" value="<%= model.password_confirmation %>">
+      </label>
+      <% if model.errors[:password_confirmation].length > 0 %>
+        <small class="error"><%= model.errors[:password_confirmation].join(', ') %></small>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <button type="submit">Create your account</button>
+    </div>
+  </div>
+</form>

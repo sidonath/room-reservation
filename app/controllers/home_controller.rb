@@ -1,11 +1,8 @@
 class HomeController
-  include Lotus::Controller
-
-  action 'Index' do
-    expose :planet
+  class Index
+    include RoomReservation::Action
 
     def call(params)
-      @planet = 'World'
     end
   end
 end
