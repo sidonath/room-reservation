@@ -20,5 +20,6 @@ Application.setup_mapper :default do
     attribute :id,                 Integer
     attribute :email,              String
     attribute :encrypted_password, String
+    attribute :team_id,            Integer
   end
 end

@@ -28,11 +28,18 @@ module RoomReservation
     def set_router
       @router = Application.router
     end
+
+    def current_user
+      @current_user ||= UserRepository.fetch(session[:user_id]) { GuestUser.new }
+    end
   end
 end
 
 Dir.glob(ApplicationRoot.join('lib/**/*.rb')) { |file| require file }
 Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
+
+class GuestUser < User
+end
 
 Lotus::View.root = ApplicationRoot.join('app/templates')
 Lotus::View.load!

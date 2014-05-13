@@ -1,3 +1,10 @@
+<% flash.given :notice  do |notice| %>
+<div data-alert class="alert-box success">
+  <%= notice %>
+  <a href="#" class="close">&times;</a>
+</div>
+<% end %>
+
 <h2>New Team</h2>
 
 <form action="<%= router.path(:teams) %>" method="POST">

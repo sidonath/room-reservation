@@ -14,6 +14,23 @@ feature 'User registration' do
     expect(page.body).to match("Your account has been created!")
   end
 
+  feature 'creating a team after registration and joining it' do
+    scenario do
+      visit '/'
+      click_link 'Register'
+
+      fill_in 'user[email]',                 with: 'user@example.com'
+      fill_in 'user[password]',              with: 'FooBar123'
+      fill_in 'user[password_confirmation]', with: 'FooBar123'
+      click_button "Create your account"
+
+      fill_in 'team[name]', with: 'Avengers'
+      click_button "Add a team"
+
+      expect(page.body).to match("You are now part of team Avengers!")
+    end
+  end
+
   scenario 'invalid data' do
     visit '/'
 
