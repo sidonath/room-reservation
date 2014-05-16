@@ -36,7 +36,7 @@ module RoomReservation
 end
 
 Dir.glob(ApplicationRoot.join('lib/**/*.rb')) { |file| require file }
-Dir.glob(ApplicationRoot.join('app/*/*.rb')) { |file| require file }
+Dir.glob(ApplicationRoot.join('app/**/*.rb')) { |file| require file }
 
 class GuestUser < User
 end
