@@ -1,0 +1,53 @@
+<% flash.given :notice  do |notice| %>
+<div data-alert class="alert-box success">
+  <%= notice %>
+  <a href="#" class="close">&times;</a>
+</div>
+<% end %>
+
+<h2>Connect with your team!</h2>
+
+<div class="row">
+  <div class="small-6 columns">
+    <div class="panel callout">
+      <h3>Create a new team</h3>
+
+      <form action="<%= router.path(:teams) %>" method="POST">
+        <%= render partial: 'teams/form', locals: { model: team_form } %>
+        <div class="row">
+          <div class="small-12 columns">
+            <button type="submit">Add a team</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="small-6 columns">
+    <div class="panel">
+      <h3>Join a team</h3>
+
+      <form action="<%= router.path(:join_account) %>" method="POST">
+        <div class="row">
+          <div class="small-12 columns <%= membership_form.error_class(:team_id) %>">
+            <label>Team:
+              <select name="user[team_id]">
+                <% teams.each do |team| %>
+                  <option value="<%= team.id %>"><%= team.name %></option>
+                <% end %>
+              </select>
+            </label>
+            <% membership_form.errors_for(:team_id) do |message| %>
+              <small class="error"><%= message %></small>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <button type="submit">Pick the team</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
