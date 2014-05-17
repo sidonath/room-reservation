@@ -12,7 +12,7 @@ class Form < Reform::Form
   def populate(*args)
     validate(*args)
     if valid?
-      save
+      sync
     end
     model
   end

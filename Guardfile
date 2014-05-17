@@ -1,4 +1,4 @@
-guard 'rspec', all_after_pass: true, all_on_start: true, keep_failed: true do
+guard 'rspec', all_after_pass: true, all_on_start: true, failed_mode: :keep do
   ignore %r|\.swp\Z|
 
   watch(%r|^spec/(.*)_spec\.rb|)

@@ -56,7 +56,7 @@ class TeamsController
     end
 
     def form_invalid
-      throw 422
+      halt 422
     end
   end
 
@@ -89,7 +89,7 @@ class TeamsController
     end
 
     def form_invalid
-      throw 422
+      halt 422
     end
   end
 

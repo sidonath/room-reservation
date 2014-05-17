@@ -49,7 +49,7 @@ class RoomsController
     end
 
     def form_invalid
-      throw 422
+      halt 422
     end
   end
 
@@ -82,7 +82,7 @@ class RoomsController
     end
 
     def form_invalid
-      throw 422
+      halt 422
     end
   end
 

@@ -25,7 +25,7 @@ class AccountController
     end
 
     def form_invalid
-      throw 422
+      halt 422
     end
 
     def sign_in!(user)
