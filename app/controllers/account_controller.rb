@@ -44,7 +44,7 @@ class AccountController
 
     def call(params)
       @team_form       = TeamsFormFactory.create
-      @membership_form = MembershipFormFactory.create(current_user)
+      @membership_form = MembershipFormFactory.create
       @teams           = @repository.sorted_by_name
     end
   end
@@ -64,15 +64,12 @@ class AccountController
     end
 
     def call(params)
-      @membership_form = MembershipFormFactory.create(current_user)
+      @membership_form = MembershipFormFactory.create
       user = @membership_form.populate(params.fetch(:user), self)
+      team = @repository.find(user.team_id)
 
-      # TODO: this is partially a business logic (assigning a user to the team)
-      # and partially storage logic (assigning team.id to users.team_id) and
-      # persisting it. What's the best place to do it?
-      current_user.team_id = user.team_id
-      team = @repository.find(current_user.team_id)
-      UserRepository.persist(current_user)
+      team.users << current_user
+      @repository.persist(team)
 
       flash[:notice] = "You are now part of team #{team.name}!"
       redirect_to router.path(:root)

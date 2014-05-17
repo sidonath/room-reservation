@@ -41,16 +41,17 @@ class TeamsController
     def call(params)
       @model = TeamsFormFactory.create
       team = @model.populate(params.fetch(:team), self)
-      @repository.persist(team)
 
       if current_user.id
-        current_user.team_id = team.id
-        UserRepository.persist(current_user)
-        flash[:notice] = "You are now part of team #{team.name}!"
+        team.users << current_user
+        message = "You are now part of team #{team.name}!"
       else
-        flash[:notice] = 'The team was created!'
+        message = 'The team was created!'
       end
 
+      @repository.persist(team)
+
+      flash[:notice] = message
       redirect_to @router.path(:teams)
     end
 

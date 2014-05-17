@@ -1,5 +1,5 @@
 module MembershipFormFactory
-  def self.create(user)
-    MembershipForm.new(user)
+  def self.create
+    MembershipForm.new(User.new)
   end
 end
