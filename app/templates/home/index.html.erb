@@ -5,6 +5,8 @@
 </div>
 <% end %>
 
-<p>
-  <a href="<%= router.path(:new_account) %>">Register</a>
-</p>
+<% if current_user.email.blank? %>
+  <p>
+    <a href="<%= router.path(:new_account) %>">Register</a>
+  </p>
+<% end %>

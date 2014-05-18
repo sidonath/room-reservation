@@ -21,9 +21,23 @@
     </ul>
 
     <section class="top-bar-section">
-      <ul>
+      <ul class="left">
         <li><a href="/rooms">Rooms</a></li>
         <li><a href="/teams">Teams</a></li>
+      </ul>
+
+      <ul class="right">
+        <% if current_user.email.blank? %>
+          <li>
+            <a class="button" href="<%= router.path(:new_account) %>">Register</a>
+          </li>
+        <% else %>
+          <li>
+            <a href="#">
+              <%= current_user.email %>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </section>
   </nav>

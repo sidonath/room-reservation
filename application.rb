@@ -20,6 +20,7 @@ module RoomReservation
         include Lotus::Action
         include Flash
         expose :router, :model
+        exposures.push :current_user
 
         before :set_router
       end
