@@ -44,6 +44,13 @@
 
   <div class="row">
     <div class="small-12 columns">
+      <% flash.given :notice  do |notice| %>
+      <div data-alert class="alert-box success">
+        <%= notice %>
+        <a href="#" class="close">&times;</a>
+      </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </div>
