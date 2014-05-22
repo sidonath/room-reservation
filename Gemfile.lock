@@ -20,6 +20,14 @@ GIT
   specs:
     lotus-utils (0.1.1)
 
+GIT
+  remote: git://github.com/lotus/view.git
+  revision: d4d407b7beec316776bc1abdc5f6fed9e9dcdf3b
+  specs:
+    lotus-view (0.1.0)
+      lotus-utils (~> 0.1)
+      tilt (~> 2.0, >= 2.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,9 +83,6 @@ GEM
     lotus-router (0.1.0)
       http_router (~> 0)
       lotus-utils (~> 0)
-    lotus-view (0.1.0)
-      lotus-utils (~> 0.1)
-      tilt (~> 2.0, >= 2.0.1)
     lumberjack (1.0.5)
     method_source (0.8.2)
     mime-types (2.2)
@@ -144,7 +149,7 @@ DEPENDENCIES
   lotus-model!
   lotus-router
   lotus-utils!
-  lotus-view
+  lotus-view!
   pg
   pry
   rake

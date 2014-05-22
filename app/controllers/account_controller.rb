@@ -36,7 +36,6 @@ class AccountController
   class Membership
     include RoomReservation::Action
     expose :team_form, :membership_form, :teams
-    exposures.delete :model
 
     def initialize(repository: TeamRepository)
       @repository = repository
@@ -52,12 +51,6 @@ class AccountController
   class Join
     include RoomReservation::Action
     expose :team_form, :membership_form, :teams
-
-    # a problem: since model is automatically exposed by
-    # RoomReservation::Action, any partial that accesses model, will ignore
-    # `locals: { model: something_else }` so we had to remove it here. The
-    # better solution is to fix partial rendering :)
-    exposures.delete :model
 
     def initialize(repository: TeamRepository)
       @repository = repository
