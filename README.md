@@ -9,7 +9,7 @@ on @jodosha's [example](https://gist.github.com/jodosha/9830002).
 
 # The Application
 
-The application is a system for booking conference rooms in a coworing space.
+The application is a system for booking conference rooms in a coworking space.
 Users can pick a free slot to book a room, and an administrator can manage
 rooms and see reports on how much a team has used a room.
 
